@@ -1,147 +1,159 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>استودیوی کارتون سه‌بعدی</title>
-  <style>
-    :root{--bg:#0b1020;--panel:#121a2d;--line:#26334d;--text:#eef3ff;--muted:#9aa9c5;--accent:#7c9cff;--green:#39d6a2}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
-    header{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid var(--line);background:#0e1628}
-    .brand{font-weight:800;font-size:18px}.brand span{color:var(--accent)}
-    .badge{font-size:12px;color:var(--green);border:1px solid #245d50;padding:7px 11px;border-radius:20px}
-    main{display:grid;grid-template-columns:310px 1fr;gap:16px;padding:16px;max-width:1500px;margin:auto}
-    aside,.stage-wrap{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-    aside{padding:18px;height:calc(100vh - 100px);overflow:auto}
-    h2{font-size:16px;margin:0 0 16px} h3{font-size:13px;color:#cbd7f1;margin:22px 0 10px}
-    label{display:block;color:var(--muted);font-size:12px;margin:12px 0 7px}
-    input[type=text]{width:100%;background:#0b1324;border:1px solid var(--line);border-radius:9px;color:white;padding:11px;direction:ltr}
-    button,.file-label{border:0;border-radius:10px;padding:11px 13px;background:#263657;color:white;cursor:pointer;font:inherit;font-size:13px}
-    button:hover,.file-label:hover{filter:brightness(1.18)} button.primary{background:var(--accent);color:#071126;font-weight:bold}
-    button.green{background:#17634f}.buttons{display:flex;gap:8px;flex-wrap:wrap}.buttons button{flex:1}
-    input[type=file]{display:none}.file-label{display:block;text-align:center;background:#263657;margin-top:10px}
-    .hint{font-size:11px;color:var(--muted);line-height:1.8;margin-top:10px}
-    .status{font-size:12px;color:var(--green);line-height:1.8;min-height:40px;overflow-wrap:anywhere}
-    .stage-wrap{position:relative;min-height:650px;background:radial-gradient(ellipse at 50% 40%,#233454 0,#111b30 48%,#0a1020 100%)}
-    #stage{width:100%;height:calc(100vh - 132px);min-height:610px;display:block}
-    .stage-top{position:absolute;top:14px;right:16px;left:16px;display:flex;justify-content:space-between;pointer-events:none}
-    .pill{background:#0b1324cc;border:1px solid #3a4b6b;border-radius:20px;padding:8px 12px;font-size:11px;color:#dbe6ff}
-    .stage-bottom{position:absolute;bottom:14px;right:16px;left:16px;display:flex;justify-content:space-between;gap:8px;pointer-events:none}
-    .stage-bottom span{background:#0b1324cc;padding:8px 11px;border-radius:8px;color:#c4d0e8;font-size:11px}
-    .range{width:100%;accent-color:var(--accent)}
-    @media(max-width:850px){main{grid-template-columns:1fr;padding:10px}aside{height:auto;order:2}.stage-wrap{order:1;min-height:480px}#stage{height:58vh;min-height:440px}header{padding:0 13px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>استودیوی کارتون سه‌بعدی</title>
+<style>
+:root{--bg:#0b1020;--panel:#151d32;--line:#2b3856;--text:#edf3ff;--muted:#aab7d1;--accent:#6ee7b7;--blue:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#0b1020,#172642);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+header{text-align:center;padding:22px 12px 12px}h1{margin:0 0 7px;font-size:25px}header p{margin:0;color:var(--muted);font-size:13px}
+main{width:min(1100px,96%);margin:12px auto 30px;display:grid;grid-template-columns:330px 1fr;gap:14px}
+.panel,.stage{background:rgba(21,29,50,.96);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 12px 35px #0005}
+h2{font-size:16px;margin:3px 0 12px;color:#bfe8ff}.section{padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)}.section:last-child{border:0;margin:0}
+label{display:block;color:var(--muted);font-size:12px;margin:9px 0 6px}
+input[type=text]{width:100%;background:#0b1325;border:1px solid var(--line);color:white;padding:11px;border-radius:9px;direction:ltr;font-size:11px}
+button,.filelabel{border:0;border-radius:9px;padding:10px 12px;background:#263957;color:white;font-weight:bold;font-size:13px;cursor:pointer;display:inline-block;margin:4px 2px}
+button.primary{background:linear-gradient(90deg,#059669,#10b981);color:#041b16;width:100%;margin:9px 0}
+button:hover,.filelabel:hover{filter:brightness(1.15)}button:disabled{opacity:.45}
+.filelabel{background:#34415c}.filelabel input{display:none}
+.row{display:flex;flex-wrap:wrap;gap:5px}.row button{flex:1}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.stage{padding:10px;min-height:510px;display:flex;flex-direction:column}
+#view{position:relative;flex:1;min-height:460px;border-radius:12px;overflow:hidden;background:radial-gradient(circle at 50% 35%,#263c60,#10192d 70%)}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+#status{padding:10px 5px 2px;color:var(--accent);font-size:13px;text-align:center;min-height:34px}
+#hint{color:var(--muted);font-size:11px;text-align:center;padding:4px}
+.badge{display:inline-block;background:#24334d;color:#b9d5ff;border-radius:20px;padding:4px 9px;font-size:11px}
+.note{color:var(--muted);font-size:11px;line-height:1.8;margin-top:9px}
+@media(max-width:760px){main{grid-template-columns:1fr}.stage{order:-1;min-height:400px}#view{min-height:380px}}
+</style>
 </head>
 <body>
-<header><div class="brand">🎬 استودیوی <span>کارتون سه‌بعدی</span></div><div class="badge">نسخه آزمایشی ۱</div></header>
+<header><h1>🎬 استودیوی کارتون سه‌بعدی</h1><p>نسخه آزمایشی ۲ · نمایش و کنترل مدل‌های GLB</p></header>
 <main>
-  <aside>
-    <h2>کنترل شخصیت</h2>
-    <div class="status" id="status">در حال آماده‌سازی نمایشگر سه‌بعدی…</div>
-    <h3>۱. بارگذاری مدل</h3>
-    <label for="modelUrl">آدرس مستقیم فایل GLB</label>
-    <input id="modelUrl" type="text" value="https://github.com/kordhastam1-ship-it/Adm/raw/refs/heads/main/humanoid_walk_talk.glb" />
-    <button class="primary" id="loadUrl" style="width:100%;margin-top:9px">بارگذاری از GitHub</button>
-    <label class="file-label" for="fileInput">یا انتخاب فایل GLB از گوشی / رایانه</label>
-    <input id="fileInput" type="file" accept=".glb,.gltf,model/gltf-binary,model/gltf+json" />
-    <h3>۲. حرکت‌های آماده</h3>
-    <div class="buttons">
-      <button id="play">▶ پخش</button><button id="pause">Ⅱ توقف</button>
-    </div>
-    <div class="buttons" style="margin-top:8px">
-      <button id="walk">🚶 راه رفتن</button><button id="idle">ایستادن</button>
-    </div>
-    <label>سرعت انیمیشن <b id="speedValue">1.0×</b></label>
-    <input class="range" id="speed" type="range" min="0" max="2" step=".1" value="1" />
-    <h3>۳. کنترل صحنه</h3>
-    <div class="buttons">
-      <button id="reset">بازنشانی دوربین</button><button id="spin">چرخش خودکار: خاموش</button>
-    </div>
-    <label>اندازه مدل</label>
-    <input class="range" id="scale" type="range" min=".4" max="2.5" step=".1" value="1" />
-    <h3>راهنما</h3>
-    <div class="hint">• با یک انگشت مدل را بچرخان و با دو انگشت بزرگ‌نمایی کن.<br>• اگر مدل از GitHub بارگذاری نشد، فایل GLB را مستقیم از گوشی انتخاب کن.<br>• دکمه‌های حرکت فقط انیمیشن‌هایی را اجرا می‌کنند که داخل فایل GLB وجود داشته باشند. اگر فایل انیمیشن نداشته باشد، برای حرکت واقعی باید نسخه اسکلت‌بندی‌شده و انیمیشن‌دار تهیه شود.</div>
-  </aside>
-  <section class="stage-wrap">
-    <canvas id="stage"></canvas>
-    <div class="stage-top"><span class="pill">نمای سه‌بعدی تعاملی</span><span class="pill" id="clipInfo">بدون مدل</span></div>
-    <div class="stage-bottom"><span>چرخش: کشیدن انگشت / ماوس</span><span>بزرگ‌نمایی: دو انگشت / اسکرول</span></div>
-  </section>
+<aside class="panel">
+ <div class="section">
+  <h2>۱. بارگذاری مدل</h2>
+  <label for="modelUrl">آدرس مستقیم فایل GLB</label>
+  <input id="modelUrl" type="text" value="https://raw.githubusercontent.com/kordhastam1-ship-it/Adm/main/humanoid_walk_talk.glb">
+  <button class="primary" id="loadUrl">بارگذاری از GitHub</button>
+  <label class="filelabel">یا انتخاب فایل GLB از گوشی / رایانه
+   <input id="fileInput" type="file" accept=".glb,.gltf,model/gltf-binary,model/gltf+json">
+  </label>
+  <div class="note">اگر GitHub بارگذاری نشد، فایل humanoid_walk_talk.glb را از گوشی انتخاب کن.</div>
+ </div>
+ <div class="section">
+  <h2>۲. حرکت‌های آماده</h2>
+  <div class="row">
+   <button id="play">▶ پخش</button><button id="pause">Ⅱ توقف</button>
+  </div>
+  <div class="row">
+   <button id="walk">🚶 راه رفتن</button><button id="idle">ایستادن</button>
+  </div>
+  <label>سرعت انیمیشن <span id="speedText">1.0×</span></label>
+  <input id="speed" type="range" min=".1" max="2" step=".1" value="1">
+  <div class="note">این دکمه‌ها فقط انیمیشن‌های موجود داخل فایل GLB را اجرا می‌کنند.</div>
+ </div>
+ <div class="section">
+  <h2>۳. کنترل صحنه</h2>
+  <div class="row"><button id="reset">بازنشانی دوربین</button><button id="rotate">چرخش خودکار: خاموش</button></div>
+  <label>اندازه مدل</label><input id="scale" type="range" min=".2" max="3" step=".1" value="1">
+ </div>
+ <div class="note">• با یک انگشت مدل را بچرخان و با دو انگشت بزرگ‌نمایی کن.<br>• با ماوس هم می‌توانی صحنه را بچرخانی و زوم کنی.</div>
+</aside>
+<section class="stage">
+ <div id="view"><div id="hint">نمای سه‌بعدی تعاملی · در حال آماده‌سازی نمایشگر…</div></div>
+ <div id="status">در حال آماده‌سازی نمایشگر سه‌بعدی…</div>
+ <div style="text-align:center"><span class="badge" id="animInfo">بدون مدل</span></div>
+</section>
 </main>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from 'three';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
-const canvas=document.querySelector('#stage');
-const status=document.querySelector('#status');
-const clipInfo=document.querySelector('#clipInfo');
-const scene=new THREE.Scene();
-scene.background=null;
-const camera=new THREE.PerspectiveCamera(38,1,.1,100);
-camera.position.set(0,1.5,5);
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-const controls=new OrbitControls(camera,renderer.domElement);
-controls.target.set(0,1,0);controls.enableDamping=true;controls.dampingFactor=.06;
-scene.add(new THREE.HemisphereLight(0xcbdcff,0x26324a,2.0));
-const key=new THREE.DirectionalLight(0xffffff,2.5);key.position.set(3,6,4);key.castShadow=true;scene.add(key);
-const fill=new THREE.DirectionalLight(0x7da5ff,1.2);fill.position.set(-4,3,-3);scene.add(fill);
-const floor=new THREE.Mesh(new THREE.CircleGeometry(5,64),new THREE.MeshStandardMaterial({color:0x17243b,roughness:.9,metalness:.05}));
-floor.rotation.x=-Math.PI/2;floor.position.y=-.025;floor.receiveShadow=true;scene.add(floor);
-const grid=new THREE.GridHelper(10,20,0x53698f,0x2c3b59);grid.position.y=-.018;scene.add(grid);
-let model=null,mixer=null,actions=[],activeAction=null,autoSpin=false;
-const clock=new THREE.Clock();
-function resize(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
-new ResizeObserver(resize).observe(canvas);resize();
-function setStatus(s){status.textContent=s}
-function fitModel(root){
- const box=new THREE.Box3().setFromObject(root),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
- const maxDim=Math.max(size.x,size.y,size.z)||1;
- root.position.sub(center);root.position.y+=size.y/2;
- root.scale.setScalar(2.2/maxDim);
- controls.target.set(0,.95,0);camera.position.set(0,1.45,4.6);controls.update();
- root.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
+const view=document.getElementById('view'),status=document.getElementById('status'),hint=document.getElementById('hint');
+const animInfo=document.getElementById('animInfo');
+const scene=new THREE.Scene(); scene.background=new THREE.Color(0x111d33);
+const camera=new THREE.PerspectiveCamera(45,1,.01,1000);camera.position.set(3,2.2,4);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace;view.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1,0);
+scene.add(new THREE.HemisphereLight(0xffffff,0x53627d,2));
+const key=new THREE.DirectionalLight(0xffffff,2.4);key.position.set(4,8,5);key.castShadow=true;scene.add(key);
+const fill=new THREE.DirectionalLight(0x8bbcff,1.1);fill.position.set(-5,3,-4);scene.add(fill);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0x253653,roughness:.9}));
+floor.rotation.x=-Math.PI/2;floor.position.y=-.02;floor.receiveShadow=true;scene.add(floor);
+const grid=new THREE.GridHelper(30,30,0x6b86aa,0x405575);grid.position.y=0;scene.add(grid);
+let model=null,mixer=null,actions=[],currentAction=null,clips=[],autoRotate=false,baseScale=1,objectUrl=null;
+const loader=new GLTFLoader();
+function setStatus(t){status.textContent=t}
+function resize(){const w=view.clientWidth,h=view.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+new ResizeObserver(resize).observe(view);resize();
+function frameModel(obj){
+ const box=new THREE.Box3().setFromObject(obj);const size=box.getSize(new THREE.Vector3());const center=box.getCenter(new THREE.Vector3());
+ const max=Math.max(size.x,size.y,size.z)||1;
+ obj.position.x-=center.x;obj.position.z-=center.z;obj.position.y-=box.min.y;
+ baseScale=2.2/max;obj.scale.setScalar(baseScale);
+ controls.target.set(0,Math.max(.5,size.y*baseScale*.48),0);
+ camera.position.set(0,Math.max(1.5,size.y*baseScale*.8),Math.max(3,size.y*baseScale*2.2));
+ controls.update();
 }
-function playAction(index){
- if(!actions.length){setStatus('این فایل انیمیشن داخلی ندارد. برای حرکت واقعی باید فایل GLB انیمیشن‌دار باشد.');return}
- const next=actions[index]||actions[0];
- if(activeAction&&activeAction!==next)activeAction.fadeOut(.2);
- activeAction=next;activeAction.reset().fadeIn(.2).play();
- clipInfo.textContent='انیمیشن: '+(activeAction.getClip().name||'بدون نام');
+function clearModel(){if(model){scene.remove(model);model=null}mixer=null;actions=[];clips=[];currentAction=null;animInfo.textContent='بدون مدل'}
+function loadModel(source,label){
+ setStatus('در حال بارگذاری مدل…');hint.style.display='none';
+ document.getElementById('loadUrl').disabled=true;
+ loader.load(source,gltf=>{
+  clearModel();model=gltf.scene;scene.add(model);
+  model.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
+  frameModel(model);
+  clips=gltf.animations||[];mixer=new THREE.AnimationMixer(model);
+  actions=clips.map(c=>mixer.clipAction(c));
+  animInfo.textContent=clips.length?`${clips.length} انیمیشن آماده`:'مدل بارگذاری شد · بدون انیمیشن';
+  setStatus(clips.length?`مدل با موفقیت بارگذاری شد · ${clips.length} حرکت موجود`:'مدل بارگذاری شد، اما انیمیشن داخلی ندارد.');
+  document.getElementById('scale').value=1;
+  document.getElementById('loadUrl').disabled=false;
+ },xhr=>{
+  if(xhr.total)setStatus('در حال بارگذاری… '+Math.round(xhr.loaded/xhr.total*100)+'٪');
+ },err=>{
+  console.error(err);setStatus('بارگذاری ناموفق بود. آدرس فایل یا دسترسی اینترنت را بررسی کن.');
+  animInfo.textContent='خطا در بارگذاری';document.getElementById('loadUrl').disabled=false;
+ });
 }
-function loadGltf(url){
- setStatus('در حال بارگذاری مدل…');
- new GLTFLoader().load(url,gltf=>{
-  if(model)scene.remove(model);
-  model=gltf.scene;scene.add(model);fitModel(model);
-  mixer=gltf.animations.length?new THREE.AnimationMixer(model):null;
-  actions=gltf.animations.map(c=>mixer.clipAction(c));activeAction=null;
-  clipInfo.textContent=gltf.animations.length?`${gltf.animations.length} انیمیشن یافت شد`:'مدل بارگذاری شد؛ بدون انیمیشن داخلی';
-  setStatus(`مدل با موفقیت بارگذاری شد. ${gltf.animations.length} انیمیشن پیدا شد.`);
-  if(actions.length)playAction(0);
- },xhr=>{if(xhr.total)setStatus(`در حال بارگذاری… ${Math.round(xhr.loaded/xhr.total*100)}٪`)},
- err=>{console.error(err);setStatus('بارگذاری از نشانی اینترنتی ناموفق بود. فایل GLB را از گوشی انتخاب کن. اگر خطای CORS بود، از GitHub Pages یا انتخاب فایل استفاده کن.');});
-}
-document.querySelector('#loadUrl').onclick=()=>loadGltf(document.querySelector('#modelUrl').value.trim());
-document.querySelector('#fileInput').onchange=e=>{
- const file=e.target.files[0];if(!file)return;
- const url=URL.createObjectURL(file);loadGltf(url);
+document.getElementById('loadUrl').onclick=()=>{const u=document.getElementById('modelUrl').value.trim();if(!u){setStatus('آدرس فایل را وارد کن.');return}loadModel(u,'GitHub')};
+document.getElementById('fileInput').onchange=e=>{
+ const f=e.target.files?.[0];if(!f)return;
+ if(objectUrl)URL.revokeObjectURL(objectUrl);objectUrl=URL.createObjectURL(f);loadModel(objectUrl,'فایل گوشی');
 };
-document.querySelector('#play').onclick=()=>{if(actions.length)playAction(actions.indexOf(activeAction)+1);else setStatus('انیمیشن داخلی در فایل پیدا نشد.')};
-document.querySelector('#pause').onclick=()=>{if(activeAction)activeAction.paused=true};
-document.querySelector('#walk').onclick=()=>{if(actions.length){const i=actions.findIndex(a=>/walk|walking|راه|قدم/i.test(a.getClip().name));playAction(i>=0?i:0)}else setStatus('این فایل کلیپ راه رفتن ندارد.')};
-document.querySelector('#idle').onclick=()=>{if(actions.length){const i=actions.findIndex(a=>/idle|stand|ایست/i.test(a.getClip().name));playAction(i>=0?i:0)}else setStatus('این فایل کلیپ ایستادن ندارد.')};
-document.querySelector('#speed').oninput=e=>{const v=+e.target.value;document.querySelector('#speedValue').textContent=v.toFixed(1)+'×';if(mixer)mixer.timeScale=v};
-document.querySelector('#scale').oninput=e=>{if(model){const v=+e.target.value;model.scale.setScalar((2.2/(new THREE.Box3().setFromObject(model).getSize(new THREE.Vector3()).length()||1))*v)}};
-document.querySelector('#reset').onclick=()=>{camera.position.set(0,1.45,4.6);controls.target.set(0,1,0);controls.update()};
-document.querySelector('#spin').onclick=()=>{autoSpin=!autoSpin;document.querySelector('#spin').textContent='چرخش خودکار: '+(autoSpin?'روشن':'خاموش')};
-function animate(){requestAnimationFrame(animate);const dt=clock.getDelta();if(mixer)mixer.update(dt);if(autoSpin&&model)model.rotation.y+=dt*.5;controls.update();renderer.render(scene,camera)}
+function playClip(index){
+ if(!mixer||!actions.length){setStatus('این مدل انیمیشن داخلی ندارد.');return}
+ const i=Math.max(0,Math.min(index,actions.length-1));
+ if(currentAction)currentAction.fadeOut(.2);
+ currentAction=actions[i];currentAction.reset().fadeIn(.2).play();
+}
+document.getElementById('play').onclick=()=>playClip(0);
+document.getElementById('walk').onclick=()=>{
+ if(!clips.length){setStatus('در فایل فعلی حرکت راه رفتن وجود ندارد.');return}
+ const i=clips.findIndex(c=>/walk|run|เดิน|راه/i.test(c.name));playClip(i>=0?i:0);
+};
+document.getElementById('idle').onclick=()=>{
+ if(!clips.length){setStatus('در فایل فعلی انیمیشن ایستادن وجود ندارد.');return}
+ const i=clips.findIndex(c=>/idle|stand|rest|ایست/i.test(c.name));playClip(i>=0?i:0);
+};
+document.getElementById('pause').onclick=()=>{if(mixer)mixer.timeScale=0;setStatus('انیمیشن متوقف شد.')};
+document.getElementById('speed').oninput=e=>{const v=Number(e.target.value);if(mixer)mixer.timeScale=v;document.getElementById('speedText').textContent=v.toFixed(1)+'×'};
+document.getElementById('scale').oninput=e=>{if(model)model.scale.setScalar(baseScale*Number(e.target.value))};
+document.getElementById('reset').onclick=()=>{if(model)frameModel(model);else{camera.position.set(3,2.2,4);controls.target.set(0,1,0);controls.update()}};
+document.getElementById('rotate').onclick=()=>{autoRotate=!autoRotate;controls.autoRotate=autoRotate;document.getElementById('rotate').textContent='چرخش خودکار: '+(autoRotate?'روشن':'خاموش')};
+const clock=new THREE.Clock();
+function animate(){requestAnimationFrame(animate);const dt=clock.getDelta();if(mixer)mixer.update(dt);controls.update();renderer.render(scene,camera)}
 animate();
-loadGltf(document.querySelector('#modelUrl').value);
+setStatus('آماده است؛ برای نمایش شخصیت، مدل را بارگذاری کن.');
 </script>
 </body>
-  </html>
+                            </html>
